@@ -402,9 +402,7 @@ Note: when calculating how many ants to dispatch to a beacon, the result will be
 					<li>
 						Les fourmis se déplacent.
 					</li>
-					<li>
-						Les cristaux sont récoltés et les points sont marqués.
-					</li>
+					
 
 					<!-- BEGIN level2 level3 level4 -->
 					<!-- BEGIN level2 -->
@@ -421,7 +419,9 @@ Note: when calculating how many ants to dispatch to a beacon, the result will be
 					</li>
 					<!-- END -->
 					<!-- END -->
-
+					<li>
+						Les cristaux sont récoltés et les points sont marqués.
+					</li>
 				</ol>
 				<br>
 				<!-- BEGIN level3 level4 -->
@@ -587,7 +587,7 @@ Note: when calculating how many ants to dispatch to a beacon, the result will be
 					<const>1</const> ≤ <var>numberOfBases</var> ≤ <const>2</const><br>
 					<var>numberOfCells</var> &lt; <const>50</const><br>
 					<!-- END -->
-					Temps de réponse par tour ≤ <const>50</const>ms<br>
+					Temps de réponse par tour ≤ <const>100</const>ms<br>
 					Temps de réponse pour le premier tour ≤ <const>1000</const>ms
 				</div>
 			</div>
