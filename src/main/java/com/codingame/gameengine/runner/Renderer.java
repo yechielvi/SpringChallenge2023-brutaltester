@@ -238,7 +238,8 @@ class Renderer {
                                     linkedImages.add(hashedImageName);
                                 } else {
                                     String relativeImagePath = tmpdir.relativize(imagePath).toString();
-                                    jsonObject.getAsJsonObject("meta").add("image", new JsonPrimitive(relativeImagePath));
+                                    String fixedPathForBrutalTester = relativeImagePath.replace("assets\\", "");
+                                    jsonObject.getAsJsonObject("meta").add("image", new JsonPrimitive(fixedPathForBrutalTester));
                                     jsonToWriteTo = f.toString();
                                     sprites.add(tmpdir.relativize(f).toString().replace("\\", "/"));
                                     linkedImages.add(relativeImagePath);
