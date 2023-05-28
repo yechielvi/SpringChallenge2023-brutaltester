@@ -49,7 +49,7 @@ public class CommandLineInterface {
  
             for (int i = 1; i <= 2; ++i) {
                 if (cmd.hasOption("p" + i)) {
-                    gameRunner.addAgent(cmd.getOptionValue("p" + i), cmd.getOptionValue("p" + i));
+                    gameRunner.addAgent("docker run -i --rm " + cmd.getOptionValue("p" + i), cmd.getOptionValue("p" + i));
                     playerCount += 1;
                 }
             }
