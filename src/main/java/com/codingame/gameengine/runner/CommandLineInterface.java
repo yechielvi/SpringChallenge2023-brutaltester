@@ -5,7 +5,6 @@ import com.google.common.io.Files;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
- 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.nio.charset.Charset;
@@ -23,6 +22,7 @@ public class CommandLineInterface {
             options.addOption("h", false, "Print the help")
                     .addOption("p1", true, "Required. Player 1 command line.")
                     .addOption("p2", true, "Required. Player 2 command line.")
+                    .addOption("league", true, "League level")
                     .addOption("s", false, "Server mode")
                     .addOption("l", true, "File output for logs")
                     .addOption("d", true, "Referee initial data");
@@ -33,7 +33,9 @@ public class CommandLineInterface {
             MultiplayerGameRunner gameRunner = new MultiplayerGameRunner();
  
             //Choose league level
-            gameRunner.setLeagueLevel(3);
+            System.out.println("League level: " + cmd.getOptionValue("league", "4") + ".");
+            Integer leagueLevel = Integer.parseInt(cmd.getOptionValue("league", "4"));;
+            gameRunner.setLeagueLevel(leagueLevel);
  
             if (cmd.hasOption("d")) {
                 String[] parse = cmd.getOptionValue("d").split("=", 0);
