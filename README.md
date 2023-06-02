@@ -30,8 +30,15 @@ docker run --name brutaltester --rm \
         codingame-brutaltester-spring-2023
         -p1 "first-player-container-name" 
         -p2 "second-player-container-name" 
+        -lvl 4 # League level : see below (4 is default value)
         -n 100 # For example : Number of games to play. Any other usual brutaltester options can be used
 ```
+
+#### League levels
+* 1 = Wood 2 : Single base, no eggs, no attacking
+* 2 = Wood 1 : Eggs appears
+* 3 = Bronze : Multiple bases, attacks enabled
+* 4 = Silver+ : Score in inputs
 
 ## 3. Sample Player Dockerfile (Java)
 

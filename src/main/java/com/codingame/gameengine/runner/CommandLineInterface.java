@@ -25,7 +25,8 @@ public class CommandLineInterface {
                     .addOption("p2", true, "Required. Player 2 command line.")
                     .addOption("s", false, "Server mode")
                     .addOption("l", true, "File output for logs")
-                    .addOption("d", true, "Referee initial data");
+                    .addOption("d", true, "Referee initial data")
+                    .addOption("lvl", true, "League level");
  
             CommandLine cmd = new DefaultParser().parse(options, args);
  
@@ -33,7 +34,11 @@ public class CommandLineInterface {
             MultiplayerGameRunner gameRunner = new MultiplayerGameRunner();
  
             //Choose league level
-            gameRunner.setLeagueLevel(3);
+            if(cmd.hasOption("lvl")) {
+                gameRunner.setLeagueLevel(Integer.parseInt(cmd.getOptionValue("lvl")));
+            } else {
+                gameRunner.setLeagueLevel(4);
+            }
  
             if (cmd.hasOption("d")) {
                 String[] parse = cmd.getOptionValue("d").split("=", 0);
