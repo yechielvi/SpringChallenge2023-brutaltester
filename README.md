@@ -28,8 +28,8 @@ docker run --name brutaltester --rm \
         -v ~/.docker/config.json:/root/.docker/config.json \ # Optional : may need this so docker can have same credentials as host, and pull on private registries
         -v /var/log/brutaltester:/var/log/brutaltester \ # Optional : this way you can retrive logs on your local filesystem
         codingame-brutaltester-spring-2023
-        -p1 "first-player-container-name" 
-        -p2 "second-player-container-name" 
+        -p1 "first-player-container-name"  # container name for first player
+        -p2 "second-player-container-name" # container name for second player
         -lvl 4 # League level : see below (4 is default value)
         -n 100 # For example : Number of games to play. Any other usual brutaltester options can be used
 ```
