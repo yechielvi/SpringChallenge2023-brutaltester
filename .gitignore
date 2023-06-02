@@ -11,3 +11,4 @@ statement_en.html
 statement_fr.html
 /generated-boards/
 node_modules/
+.idea/
