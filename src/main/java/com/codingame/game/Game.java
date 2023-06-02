@@ -381,17 +381,19 @@ public class Game {
 
     private boolean checkGameOver() {
         int remainingFood = board.getRemainingFood();
-        int pointsDiff = Math.abs(players.get(1).getPoints() - players.get(0).getPoints());
-        if (remainingFood == 0) {
+
+        if (board.getRemainingFood() == 0) {
             gameSummaryManager.addNoMoreFood();
-        } else if (remainingFood < pointsDiff) {
-            if (players.get(0).getPoints() > players.get(1).getPoints()) {
-                gameSummaryManager.addNotEnoughFoodLeft(remainingFood, players.get(0));
-            } else {
-                gameSummaryManager.addNotEnoughFoodLeft(remainingFood, players.get(1));
-            }
+            return true;
         }
-        return remainingFood == 0 || remainingFood < pointsDiff;
+        if (players.get(0).points >= players.get(1).points + remainingFood) {
+            gameSummaryManager.addNotEnoughFoodLeft(players.get(0));
+            return true;
+        } else if (players.get(1).points >= players.get(0).points + remainingFood) {
+            gameSummaryManager.addNotEnoughFoodLeft(players.get(1));
+            return true;
+        }
+        return false;
     }
 
     public void onEnd() {
