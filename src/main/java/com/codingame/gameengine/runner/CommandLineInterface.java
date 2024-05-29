@@ -5,7 +5,8 @@ import com.google.common.io.Files;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
- 
+import org.apache.commons.io.FileUtils;
+import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.nio.charset.Charset;
@@ -21,15 +22,23 @@ public class CommandLineInterface {
  
             // Define required options
             options.addOption("h", false, "Print the help")
-                    .addOption("p1", true, "Required. Player 1 command line.")
-                    .addOption("p2", true, "Required. Player 2 command line.")
+                    .addOption("p1", true, "Required unless replaying a file. Player 1 command line.")
+                    .addOption("p2", true, "Required unless replaying a file. Player 2 command line.")
                     .addOption("s", false, "Server mode")
+                    .addOption("r", true, "File input for replay")
                     .addOption("l", true, "File output for logs")
                     .addOption("d", true, "Referee initial data")
                     .addOption("lvl", true, "League level");
  
             CommandLine cmd = new DefaultParser().parse(options, args);
  
+            if (cmd.hasOption("r")) {
+                File json = new File(cmd.getOptionValue("r"));
+                String jsonResult = FileUtils.readFileToString(json);
+                new Renderer(8888).render(2, jsonResult);
+                return;
+            }
+
             // Launch Game
             MultiplayerGameRunner gameRunner = new MultiplayerGameRunner();
  
