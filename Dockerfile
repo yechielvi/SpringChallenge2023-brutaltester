@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-alpine AS build-referee
+FROM eclipse-temurin:8u412-b08-jdk-alpine AS build-referee
 
 WORKDIR /app
 COPY pom.xml pom.xml
@@ -6,7 +6,7 @@ COPY src src
 RUN apk add maven
 RUN mvn package
 
-FROM openjdk:8-jdk-alpine AS build-brutaltester
+FROM eclipse-temurin:8u412-b08-jdk-alpine AS build-brutaltester
 
 WORKDIR /app
 RUN apk add git
@@ -17,9 +17,9 @@ RUN git clone https://github.com/dreignier/cg-brutaltester.git
 WORKDIR /app/cg-brutaltester
 RUN mvn package
 
-FROM openjdk:8-jre-alpine
+FROM eclipse-temurin:8u412-b08-jdk-alpine
 
-RUN apk add --update docker openrc
+RUN apk add --update openrc python3
 
 WORKDIR /app
 COPY --from=build-referee /app/target/spring-2023-ants-1.0-SNAPSHOT.jar ./
